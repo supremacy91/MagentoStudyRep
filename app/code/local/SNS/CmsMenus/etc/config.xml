@@ -1,0 +1,95 @@
+<config>
+    <modules>
+        <SNS_CmsMenus>
+            <version>0.0.0.1</version>
+        </SNS_CmsMenus>
+    </modules>
+    <global>
+        <models>
+            <cmsMenu>
+                <class>SNS_CmsMenus_Model</class>
+                <resourceModel>cmsMenu_resource</resourceModel>
+            </cmsMenu>
+            <cmsMenu_resource>
+                <class>SNS_CmsMenus_Model_Resource</class>
+                <entities>
+                    <menu>
+                        <table>cms_menu</table>
+                    </menu>
+                    <relation>
+                        <table>relation</table>
+                    </relation>
+                </entities>
+            </cmsMenu_resource>
+        </models>
+        <helpers>
+            <cmsMenus>
+                <class>SNS_CmsMenus_Helper</class>
+            </cmsMenus>
+        </helpers>
+        <resources>
+            <cmsMenu_setup>
+                <setup>
+                    <module>SNS_CmsMenus</module>
+                </setup>
+            </cmsMenu_setup>
+        </resources>
+        <blocks>
+            <cmsMenu>
+                <class>SNS_CmsMenus_Block</class>
+            </cmsMenu>
+        </blocks>
+    </global>
+   <!-- <default>
+        <admin>
+            <emails>
+                <forgot_email_template>admin_emails_forgot_email_template</forgot_email_template>
+                <forgot_email_identity>general</forgot_email_identity>
+                <password_reset_link_expiration_period>2</password_reset_link_expiration_period>
+            </emails>
+        </admin>
+    </default>-->
+    <adminhtml>
+        <layout>
+            <updates>
+                <cmsMenu>
+                    <file>menu.xml</file>
+                </cmsMenu>
+            </updates>
+        </layout>
+        <routers>
+            <cmsMenu>
+                <use>admin</use>
+                <args>
+                    <module>SNS_CmsMenus</module>
+                    <frontName>menu_admin</frontName>
+                </args>
+            </cmsMenu>
+        </routers>
+    </adminhtml>
+    <!--<frontend>
+        <routers>
+            <cmsMenu>
+                <use>standard</use>
+                <args>
+                    <module>SNS_CmsMenus</module>
+                    <frontName>cmsMenu</frontName>&lt;!&ndash; любое название, не конфликтуйте с существующими роутерами &ndash;&gt;
+                </args>
+            </cmsMenu>
+        </routers>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <siteblocks after="Mage_Adminhtml">SNS_CmsMenus_Adminhtml</siteblocks>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+-->
+
+</config>

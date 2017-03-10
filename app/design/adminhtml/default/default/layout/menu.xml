@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<layout>
+<menu_admin_adminhtml_menu_index>
+    <reference name="context"></reference>
+</menu_admin_adminhtml_menu_index>
+</layout>

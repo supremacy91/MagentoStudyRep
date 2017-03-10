@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <SNS_CmsMenus>
+            <active>true</active>
+            <codePool>local</codePool>
+        </SNS_CmsMenus>
+    </modules>
+</config>

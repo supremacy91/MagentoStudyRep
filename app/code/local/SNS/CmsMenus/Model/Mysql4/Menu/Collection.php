@@ -1,0 +1,4 @@
+<?php
+class SNS_CmsMenus_Model_Mysql4_Menu_Collection extends SNS_CmsMenus_Model_Resource_Menu_Collection
+{
+}
