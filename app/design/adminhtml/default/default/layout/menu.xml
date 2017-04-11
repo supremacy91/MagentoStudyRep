@@ -1,6 +1,49 @@
 <?xml version="1.0"?>
 <layout>
 <menu_admin_adminhtml_menu_index>
-    <reference name="context"></reference>
+    <reference name="content">
+        <block name="menuadmin.index" type="cmsMenu/adminhtml_menuadmin"/>
+    </reference>
 </menu_admin_adminhtml_menu_index>
+<menu_admin_adminhtml_menu_edit>
+    <reference name="content">
+        <block name="menuedit.index" type="cmsMenu/adminhtml_menuadmin_edit"/>
+    </reference>
+    <reference name="left">
+        <block type="cmsMenu/adminhtml_menuadmin_edit_tabs" name="cms_page_edit_tabs">
+            <block type="cmsMenu/adminhtml_menuadmin_edit_tab_general" name="cms_page_edit_tab_general" />
+            <action method="addTab"><name>general_section</name><block>cms_page_edit_tab_general</block></action>
+            <action method="setActiveTab"><name>general_section</name></action>
+        </block>
+    </reference>
+</menu_admin_adminhtml_menu_edit>
+
+   <menu_admin_adminhtml_menu_link>
+
+            <block type="core/text_list" name="root" output="toHtml">
+            <block type="cmsMenu/adminhtml_menuadmin_edit_tab_link" name="adminhtml.menuadmin.edit.tab.link"/>
+                <block type="adminhtml/widget_grid_serializer" name="link_grid_serializer">
+                    <reference name="link_grid_serializer">
+                        <action method="initSerializerBlock">
+                            <grid_block_name>adminhtml.menuadmin.edit.tab.link</grid_block_name>
+                            <data_callback>getSelected</data_callback>
+                            <hidden_input_name>rcm</hidden_input_name>
+                            <reload_param_name>in_menu</reload_param_name>
+                        </action>
+
+                    </reference>
+                </block>
+            </block>
+
+    </menu_admin_adminhtml_menu_link>
+
+
+<menu_admin_adminhtml_menu_pagesgrid>
+
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="cmsMenu/adminhtml_menuadmin_edit_tab_link" name="tab.pagesGrid"/>
+        </block>
+
+</menu_admin_adminhtml_menu_pagesgrid>
+
 </layout>

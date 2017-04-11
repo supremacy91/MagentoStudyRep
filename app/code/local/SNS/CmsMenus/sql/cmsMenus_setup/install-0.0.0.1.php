@@ -18,11 +18,11 @@ $table = $installer->getConnection()
     ->addColumn('date_update', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null, array(
     ), 'Date update')
     ->addColumn('status', Varien_Db_Ddl_Table::TYPE_TEXT, 255, array(
-    ), 'Status')
+    ), 'Status');
 $installer->getConnection()->createTable($table);
 
 $table = $installer->getConnection()
-    ->newTable($installer->getTable('cmsMenu/menu'))
+    ->newTable($installer->getTable('cmsMenu/relation'))
     ->addColumn('ref_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'identity'  => true,
         'unsigned'  => true,
@@ -32,7 +32,7 @@ $table = $installer->getConnection()
     ->addColumn('ref_cms_menu', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'unsigned'  => true,
     ), 'CMS menu reference')
-    ->addColumn('ref_cms_', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+    ->addColumn('ref_cms_page', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'unsigned'  => true,
-    ), 'CMS menu reference')
+    ), 'CMS page reference');
 $installer->getConnection()->createTable($table);

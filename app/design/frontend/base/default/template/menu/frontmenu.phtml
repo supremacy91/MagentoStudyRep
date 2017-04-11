@@ -1,0 +1,7 @@
+<?php foreach ($this->getCollection() as $menu): ?>
+
+    <div class="menu-item">
+        <h4><a href="<?php echo $this->getLink($menu) ?>"><?php echo $menu->getName() ?></a></h4>
+    </div>
+
+<?php endforeach ?>

@@ -1,7 +1,7 @@
 <config>
     <modules>
         <SNS_CmsMenus>
-            <version>0.0.0.1</version>
+            <version>0.0.0.6</version>
         </SNS_CmsMenus>
     </modules>
     <global>
@@ -28,11 +28,11 @@
             </cmsMenus>
         </helpers>
         <resources>
-            <cmsMenu_setup>
+            <cmsMenus_setup>
                 <setup>
                     <module>SNS_CmsMenus</module>
                 </setup>
-            </cmsMenu_setup>
+            </cmsMenus_setup>
         </resources>
         <blocks>
             <cmsMenu>
@@ -40,15 +40,18 @@
             </cmsMenu>
         </blocks>
     </global>
-   <!-- <default>
-        <admin>
-            <emails>
-                <forgot_email_template>admin_emails_forgot_email_template</forgot_email_template>
-                <forgot_email_identity>general</forgot_email_identity>
-                <password_reset_link_expiration_period>2</password_reset_link_expiration_period>
-            </emails>
-        </admin>
-    </default>-->
+
+    <admin>
+        <routers>
+            <menu_admin>
+                <use>admin</use>
+                <args>
+                    <module>SNS_CmsMenus</module>
+                    <frontName>menu_admin</frontName>
+                </args>
+            </menu_admin>
+        </routers>
+    </admin>
     <adminhtml>
         <layout>
             <updates>
@@ -57,39 +60,26 @@
                 </cmsMenu>
             </updates>
         </layout>
-        <routers>
-            <cmsMenu>
-                <use>admin</use>
-                <args>
-                    <module>SNS_CmsMenus</module>
-                    <frontName>menu_admin</frontName>
-                </args>
-            </cmsMenu>
-        </routers>
-    </adminhtml>
-    <!--<frontend>
-        <routers>
-            <cmsMenu>
-                <use>standard</use>
-                <args>
-                    <module>SNS_CmsMenus</module>
-                    <frontName>cmsMenu</frontName>&lt;!&ndash; любое название, не конфликтуйте с существующими роутерами &ndash;&gt;
-                </args>
-            </cmsMenu>
-        </routers>
-    </frontend>
-    <admin>
-        <routers>
-            <adminhtml>
-                <args>
-                    <modules>
-                        <siteblocks after="Mage_Adminhtml">SNS_CmsMenus_Adminhtml</siteblocks>
-                    </modules>
-                </args>
-            </adminhtml>
-        </routers>
-    </admin>
 
--->
+    </adminhtml>
+    <frontend>
+        <layout>
+            <updates>
+                <cmsMenu>
+                    <file>menu.xml</file>
+                </cmsMenu>
+            </updates>
+        </layout>
+        <events>
+            <cms_page_render>
+                <observers>
+                    <indicate>
+                        <class>cmsMenu/observer</class>
+                        <method>cms_page_render_func</method>
+                    </indicate>
+                </observers>
+            </cms_page_render>
+        </events>
+    </frontend>
 
 </config>

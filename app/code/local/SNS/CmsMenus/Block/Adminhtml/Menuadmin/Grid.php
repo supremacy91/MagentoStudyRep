@@ -37,8 +37,8 @@ class SNS_CmsMenus_Block_Adminhtml_Menuadmin_Grid extends Mage_Adminhtml_Block_W
     public function __construct()
     {
         parent::__construct();
-        $this->setId('cmsBlockGrid');
-        $this->setDefaultSort('block_identifier');
+        $this->setId('menuGrid');
+        $this->setDefaultSort('menu_id');
         $this->setDefaultDir('ASC');
     }
 
@@ -54,70 +54,71 @@ class SNS_CmsMenus_Block_Adminhtml_Menuadmin_Grid extends Mage_Adminhtml_Block_W
     {
         $baseUrl = $this->getUrl();
 
-        $this->addColumn('title', array(
-            'header'    => Mage::helper('cms')->__('Title'),
+        $this->addColumn('menu_id', array(
+            'header'    => $this->__('menu ID'),
             'align'     => 'left',
-            'index'     => 'title',
+            'index'     => 'menu_id',
         ));
 
-        $this->addColumn('identifier', array(
-            'header'    => Mage::helper('cms')->__('Identifier'),
+        $this->addColumn('name', array(
+            'header'    => $this->__('Name'),
             'align'     => 'left',
-            'index'     => 'identifier'
+            'index'     => 'name'
         ));
 
-        if (!Mage::app()->isSingleStoreMode()) {
-            $this->addColumn('store_id', array(
-                'header'        => Mage::helper('cms')->__('Store View'),
-                'index'         => 'store_id',
-                'type'          => 'store',
-                'store_all'     => true,
-                'store_view'    => true,
-                'sortable'      => false,
-                'filter_condition_callback'
-                                => array($this, '_filterStoreCondition'),
-            ));
-        }
+        $this->addColumn('date_created', array(
+            'header'    => $this->__('Date of creation'),
+            'align'     => 'left',
+            'index'     => 'date_created'
+        ));
 
-        $this->addColumn('is_active', array(
-            'header'    => Mage::helper('cms')->__('Status'),
-            'index'     => 'is_active',
+        $this->addColumn('date_update', array(
+            'header'    => $this->__('Date of update'),
+            'align'     => 'left',
+            'index'     => 'date_update'
+        ));
+
+
+        $this->addColumn('status', array(
+            'header'    => $this->__('Status'),
+            'index'     => 'status',
             'type'      => 'options',
             'options'   => array(
-                0 => Mage::helper('cms')->__('Disabled'),
-                1 => Mage::helper('cms')->__('Enabled')
+                0 => $this->__('Disabled'),
+                1 => $this->__('Enabled')
             ),
         ));
 
-        $this->addColumn('creation_time', array(
-            'header'    => Mage::helper('cms')->__('Date Created'),
-            'index'     => 'creation_time',
-            'type'      => 'datetime',
+        $this->addColumn('link', array(
+            'header'    => $this->__('Link is here'),
+            'align'     => 'left',
+            'index'     => 'link'
         ));
 
-        $this->addColumn('update_time', array(
-            'header'    => Mage::helper('cms')->__('Last Modified'),
-            'index'     => 'update_time',
-            'type'      => 'datetime',
-        ));
+        $this->addColumn('action',
+            array(
+                'header'    => $this->__('Action'),
+                'width'     => '50px',
+                'type'      => 'action',
+                'getter'     => 'getId',
+                'actions'   => array(
+                    array(
+                        'caption' => $this->__('Edit'),
+                        'url'     => array(
+                            'base'=>'*/*/edit',
+
+                        ),
+                        'field'   => 'id'
+                    )
+                ),
+                'filter'    => false,
+                'sortable'  => false,
+
+            ));
 
         return parent::_prepareColumns();
     }
 
-    protected function _afterLoadCollection()
-    {
-        $this->getCollection()->walk('afterLoad');
-        parent::_afterLoadCollection();
-    }
-
-    protected function _filterStoreCondition($collection, $column)
-    {
-        if (!$value = $column->getFilter()->getValue()) {
-            return;
-        }
-
-        $this->getCollection()->addStoreFilter($value);
-    }
 
     /**
      * Row click url
@@ -126,7 +127,8 @@ class SNS_CmsMenus_Block_Adminhtml_Menuadmin_Grid extends Mage_Adminhtml_Block_W
      */
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/edit', array('block_id' => $row->getId()));
+        //die(var_dump($row->getId()));
+        return $this->getUrl('*/*/edit', array('id' => $row->getId()));
     }
 
 }

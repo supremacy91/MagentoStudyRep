@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout>
+    <cms_page>
+        <reference name="content">
+            <block name="menuuser.index" type="cmsMenu/menuuser" before="-" template="menu/frontmenu.phtml"/>
+        </reference>
+    </cms_page>
+
+</layout>

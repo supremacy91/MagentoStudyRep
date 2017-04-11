@@ -103,7 +103,6 @@ class Mage_Cms_Helper_Page extends Mage_Core_Helper_Abstract
                         && $inRange) ? $page->getCustomRootTemplate() : $page->getRootTemplate();
             $action->getLayout()->helper('page/layout')->applyHandle($handle);
         }
-
         Mage::dispatchEvent('cms_page_render', array('page' => $page, 'controller_action' => $action));
 
         $action->loadLayoutUpdates();

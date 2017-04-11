@@ -36,9 +36,10 @@ class SNS_CmsMenus_Block_Adminhtml_Menuadmin extends Mage_Adminhtml_Block_Widget
 
     public function __construct()
     {
-        $this->_controller = 'cms_block';
-        $this->_headerText = Mage::helper('cms')->__('Static Blocks');
-        $this->_addButtonLabel = Mage::helper('cms')->__('Add New Block');
+        $this->_blockGroup = 'cmsMenu';
+        $this->_controller = 'adminhtml_menuadmin';
+        $this->_headerText = $this->__('Menu parametres');
+        $this->_addButtonLabel = $this->__('Add New Menu');
         parent::__construct();
     }
 
