@@ -127,7 +127,6 @@ class SNS_CmsMenus_Block_Adminhtml_Menuadmin_Grid extends Mage_Adminhtml_Block_W
      */
     public function getRowUrl($row)
     {
-        //die(var_dump($row->getId()));
         return $this->getUrl('*/*/edit', array('id' => $row->getId()));
     }
 

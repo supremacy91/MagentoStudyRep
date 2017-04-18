@@ -18,25 +18,15 @@
                 <children>
                     <cms>
                         <children>
-                            <menuExt translate="title" module="cmsMenus">
-                                <title>menu Extension</title>
+                            <menuext translate="title" module="cmsMenus">
+                                <title>Menu Extension</title>
                                 <sort_order>100</sort_order>
-                            </menuExt>
+                            </menuext>
                         </children>
                     </cms>
-                   <!-- <system>
-                            <children>
-                                <config>
-                                    <children>
-                                        <cms translate="title" module="cms">
-                                            <title>Content Management</title>
-                                        </cms>
-                                    </children>
-                                </config>
-                            </children>
-                        </system>-->
                 </children>
             </admin>
         </resources>
     </acl>
+
 </config>

@@ -51,6 +51,15 @@
                 </args>
             </menu_admin>
         </routers>
+        <!--<routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <menu_admin after="Mage_Adminhtml">SNS_CmsMenus_Adminhtml</menu_admin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>-->
     </admin>
     <adminhtml>
         <layout>
