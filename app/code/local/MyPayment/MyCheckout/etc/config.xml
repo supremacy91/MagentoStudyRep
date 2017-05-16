@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <MyPayment_MyCheckout>
+            <version>0.0.0.1</version>
+        </MyPayment_MyCheckout>
+    </modules>
+
+    <global>
+        <models>
+            <my_payment>
+                <class>MyPayment_MyCheckout_Model</class>
+            </my_payment>
+        </models>
+        <helpers>
+            <my_payment>
+                <class>MyPayment_MyCheckout_Helper</class>
+            </my_payment>
+
+        </helpers>
+        <blocks>
+            <my_payment>
+                <class>MyPayment_MyCheckout_Block</class>
+            </my_payment>
+        </blocks>
+        <resources>
+            <myCheckout_setup>
+                <setup>
+                    <module>MyPayment_MyCheckout</module>
+                    <class>Mage_Customer_Model_Entity_Setup</class>
+                </setup>
+            </myCheckout_setup>
+        </resources>
+    </global>
+
+   <!-- <adminhtml>
+        <events>
+            <sales_order_creditmemo_refund>
+                <observers>
+                    <my_refund_observer>
+                        <class>my_payment/observer</class>
+                        <method>my_payment_refund</method>
+                    </my_refund_observer>
+                </observers>
+            </sales_order_creditmemo_refund>
+        </events>
+    </adminhtml>-->
+
+    <default>
+        <payment>
+            <my_payment>
+                <model>my_payment/mypayment</model>// very important thing, here you select the model for your payment method
+                <active>1</active>
+                <order_status>pending</order_status>
+                <title>My Custom Payment Method</title>
+                <payment_action>authorize_capture</payment_action>
+                <allowspecific>0</allowspecific>
+                <sort_order>100</sort_order>
+            </my_payment>
+        </payment>
+    </default>
+<!--
+<frontend>
+    <routers>
+        <my_payment>
+            <use>standard</use>
+            <args>
+                <module>MyPayment_MyCheckout</module>
+                <frontname>customcard</frontname>
+            </args>
+        </my_payment>
+    </routers>
+</frontend>-->
+</config>

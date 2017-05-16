@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <MyShop_MyCarrier>
+            <module>0.0.0.1</module>
+        </MyShop_MyCarrier>
+    </modules>
+    <global>
+        <models>
+            <my_shop>
+                <class>MyShop_MyCarrier_Model</class>
+            </my_shop>
+        </models>
+        <helpers>
+            <my_shop>
+                <class>MyShop_MyCarrier_Helper</class>
+            </my_shop>
+        </helpers>
+        <blocks>
+            <my_shop>
+                <class>MyShop_MyCarrier_Block</class>
+            </my_shop>
+        </blocks>
+    </global>
+    <default>
+        <carriers>
+            <new_method>
+                <active>1</active>
+                <name>New Method</name>
+                <type>I</type>
+                <model>my_shop/carrier</model>
+                <title>My Shop Carrier</title>
+                <sort_order>1</sort_order>
+                <sallowspecific>0</sallowspecific>
+                <first_deliver_price>0</first_deliver_price>
+            </new_method>
+        </carriers>
+    </default>
+    <admin>
+        <translate>
+            <modules>
+                <MyShop_MyCarrier>
+                    <files>
+                        <default>MyShop_MyCarrier.csv</default>
+                    </files>
+                </MyShop_MyCarrier>
+            </modules>
+        </translate>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <my_shop_any_name>
+                    <files>
+                        <default>MyShop_MyCarrier.csv</default>
+                    </files>
+                </my_shop_any_name>
+            </modules>
+        </translate>
+    </adminhtml>
+</config>
