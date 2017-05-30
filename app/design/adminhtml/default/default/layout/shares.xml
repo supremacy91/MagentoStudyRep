@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<layout>
+    <shares_adminhtml_share_index>
+        <reference name="content">
+            <block name="sharesadmin.index" type="shares/adminhtml_container"/>
+        </reference>
+    </shares_adminhtml_share_index>
+
+    <shares_adminhtml_share_edit>
+        <reference name="content">
+            <block name="sharesedit.index" type="shares/adminhtml_sharesadmin_edit"/>
+        </reference>
+        <reference name="left">
+            <block type="shares/adminhtml_sharesadmin_edit_tabs" name="shares_edit_tabs">
+                <block type="shares/adminhtml_sharesadmin_edit_tab_share" name="share_edit_tab_share" />
+                <action method="addTab"><name>share_section</name><block>share_edit_tab_share</block></action>
+                <action method="setActiveTab"><name>share_section</name></action>
+            </block>
+        </reference>
+    </shares_adminhtml_share_edit>
+
+        <shares_adminhtml_share_link>
+
+            <block type="core/text_list" name="root" output="toHtml">
+                <block type="shares/adminhtml_sharesadmin_edit_tab_link" name="adminhtml.sharesadmin.edit.tab.link"/>
+                <block type="adminhtml/widget_grid_serializer" name="link_grid_serializer">
+                    <reference name="link_grid_serializer">
+                        <action method="initSerializerBlock">
+                            <grid_block_name>adminhtml.sharesadmin.edit.tab.link</grid_block_name>
+                            <data_callback>getSelected</data_callback>
+                            <hidden_input_name>relationData</hidden_input_name>
+                            <reload_param_name>in_shares</reload_param_name>
+                        </action>
+
+                    </reference>
+                </block>
+            </block>
+
+        </shares_adminhtml_share_link>
+
+
+           <shares_adminhtml_share_pagesgrid>
+
+               <block type="core/text_list" name="root" output="toHtml">
+                   <block type="cmsMenu/adminhtml_menuadmin_edit_tab_link" name="tab.pagesGrid"/>
+               </block>
+
+           </shares_adminhtml_share_pagesgrid>
+
+
+</layout>

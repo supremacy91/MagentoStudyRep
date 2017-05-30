@@ -1,0 +1,29 @@
+<?php $design = $this->getDesign(); ?>
+
+<style type="text/css">
+    .nivo-caption, .nivo-caption *{
+    <?php echo $design['textscolor']; ?>
+    }
+    .nivo-caption{
+    <?php echo $design['bgscolor']; ?>
+    <?php echo $design['textopacity']; ?>
+    <?php echo $design['textpos']; ?>
+    <?php echo $design['textsize']; ?>
+    }
+
+    .nivo-controlNav a{
+    <?php echo $design['buttonscolor']; ?>
+    }
+    .nivo-controlNav a.active, .nivo-controlNav a:hover{
+    <?php echo $design['buttonscolorhover']; ?>
+    }
+    .nivo-controlNav{
+    <?php echo $design['buttonpos']; ?>
+    }
+    .nivo-nextNav{
+    <?php echo $design['nextimage']; ?>
+    }
+    .nivo-prevNav{
+    <?php echo $design['previmage']; ?>
+    }
+</style>

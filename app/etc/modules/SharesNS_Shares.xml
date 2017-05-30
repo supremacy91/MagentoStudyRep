@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <SharesNS_Shares>
+            <active>true</active>
+            <codePool>local</codePool>
+        </SharesNS_Shares>
+    </modules>
+</config>

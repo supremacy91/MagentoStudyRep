@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Test4NS_Test4>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Test4NS_Test4>
+    </modules>
+</config>

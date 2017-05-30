@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<config>
+    <menu>
+
+
+                <shares translate="title" module="shares">
+                    <title>Shares</title>
+                    <action>shares/adminhtml_share</action>
+                    <sort_order>100</sort_order>
+                </shares>
+
+
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+
+                            <shares translate="title" module="shares">
+                                <title>Shares</title>
+                                <sort_order>100</sort_order>
+                            </shares>
+
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+</config>
