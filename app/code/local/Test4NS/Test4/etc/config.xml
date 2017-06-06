@@ -4,4 +4,15 @@
             <version>0.0.1</version>
         </Test4NS_Test4>
     </modules>
+    <admin>
+        <routers>
+            <test_route>
+                <args>
+                    <modules>
+                        <test_routing before="Mage_Adminhtml">Test4NS_Test4</test_routing>
+                    </modules>
+                </args>
+            </test_route>
+        </routers>
+    </admin>
 </config>

@@ -12,6 +12,7 @@ class SharesNS_Shares_Block_Slider extends Mage_Core_Block_Template
 
     public function _construct()
     {
+        Mage::log("DDDDDDDDDDDDDDDDDDDDDDDDDD");
         $this->addData(array(
             'cache_lifetime'    => 99999,
             'cache_tags'        => array('YOUAMASLIDER_CHACHE')

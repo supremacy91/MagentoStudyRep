@@ -6,6 +6,7 @@ class SNS_CmsMenus_Adminhtml_MenuController extends Mage_Adminhtml_Controller_Ac
     {
         $this->loadLayout();
         $this->renderLayout();
+       // $this->getResponse()->setOutput();
     }
 
     public function newAction()
