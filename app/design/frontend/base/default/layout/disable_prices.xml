@@ -4,19 +4,19 @@
         <!--<reference name="content">
             <block type="priceDisabling/showLink" template="disableprices/disable_prices.phtml"></block>
         </reference>
--->
+
         <reference name="product.info">
             <block type="priceDisabling/showLink" template="disableprices/disable_prices.phtml"></block>
-        </reference>
+        </reference>-->
 
         <reference name="product.info.simple.extra">
-            <block type="priceDisabling/showLink" template="disableprices/disable_prices.phtml"></block>
+            <block type="priceDisabling/showLink" name="product.info.simple.extra.custom" template="disableprices/disable_prices.phtml"></block>
         </reference>
         <reference name="product.info.configurable.extra">
-            <block type="priceDisabling/showLink" template="disableprices/disable_prices.phtml"></block>
+            <block type="priceDisabling/showLink" name="product.info.configurable.extra.custom" template="disableprices/disable_prices.phtml"></block>
         </reference>
         <reference name="product.info.grouped.extra">
-            <block type="priceDisabling/showLink" template="disableprices/disable_prices.phtml"></block>
+            <block type="priceDisabling/showLink" name="product.info.grouped.extra.custom" template="disableprices/disable_prices.phtml"></block>
         </reference>
     </catalog_product_view>
 
