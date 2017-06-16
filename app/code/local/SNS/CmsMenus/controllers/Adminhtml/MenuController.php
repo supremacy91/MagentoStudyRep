@@ -17,7 +17,6 @@ class SNS_CmsMenus_Adminhtml_MenuController extends Mage_Adminhtml_Controller_Ac
 
     public function editAction()
     {
-
         $id = $this->getRequest()->getParam('id');
         $model = Mage::getModel('cmsMenu/menu')->load($id);
 

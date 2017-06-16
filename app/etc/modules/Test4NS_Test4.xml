@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Test4NS_Test4>
-            <active>true</active>
+            <active>false</active>
             <codePool>local</codePool>
         </Test4NS_Test4>
     </modules>

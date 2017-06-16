@@ -204,6 +204,13 @@ sub {
   bottom: -0.25em;
 }
 
+#fastorder-buttons-container {
+  margin-bottom: 30px;
+}
+
+.attentionBundleAndGroup {
+  color: blue;
+}
 /* ==========================================================================
    Embedded content
    ========================================================================== */

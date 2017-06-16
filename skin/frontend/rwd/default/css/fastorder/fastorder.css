@@ -1,0 +1,156 @@
+/**
+ * WEB4PRO - Creating profitable online stores
+ *
+ *
+ * @author    WEB4PRO <support@web4pro.net>
+ * @category  WEB4PRO
+ * @package   Web4pro_Fastorder
+ * @copyright Copyright (c) 2014 WEB4PRO (http://www.web4pro.net)
+ * @license   http://www.web4pro.net/license.txt
+ */
+
+#fastorder-form-wrapper {
+    text-align: left;
+}
+
+#fastorder-form-wrapper .catalog_product_view {
+    width: 100%;
+}
+
+#fastorder-form-wrapper .fastorder-fields{
+    width: 26em;
+}
+
+#fastorder-form-wrapper form {
+    margin-top: 6px;
+    display: block;
+}
+
+#fastorder-form-wrapper .form-list::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+#fastorder-form-wrapper .form-list li {
+    float: left;
+    margin: 5px 1% 10px 0;
+}
+
+#fastorder-form-wrapper .form-list .fastorder-country-phone-code {
+    max-width: 30%;
+    width: 120px;
+}
+
+#fastorder-form-wrapper .form-list .fastorder-phone-code {
+    max-width: 70%;
+}
+
+#fastorder-form-wrapper .form-list .fastorder-email {
+    max-width: 100%;
+    width: 100%;
+}
+
+#fastorder-form-wrapper .form-list .fastorder-onlycurrent {
+    max-width: 100%;
+    width: 100%;
+}
+
+#fastorder-form-wrapper .form-list .fastorder-captcha {
+    max-width: 100%;
+    width: 100%;
+}
+
+#fastorder-form-wrapper .form-list .comment-wrapper {
+    max-width: 100%;
+    width: 100%;
+}
+
+#fastorder-form-wrapper .form-list select {
+    border: 1px solid silver;
+    display: block;
+    height: 30px;
+    text-transform: uppercase;
+}
+
+#fastorder-form-wrapper .form-list input {
+    height: 30px;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+.product-view #fastorder-form-wrapper .form-list #phone {
+    width: 234px;
+}
+
+.cart-totals-wrapper #fastorder-form-wrapper .form-list #phone {
+    width: 241px;
+}
+
+#fastorder-form-wrapper .form-list #only-current {
+    width: auto;
+    float: left;
+    height: 15px;
+}
+
+#fastorder-form-wrapper .form-list .mess-text {
+    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+    margin-left: 10px;
+}
+
+.product-view #fastorder-form-wrapper .buttons-set {
+    width: 31%;
+}
+
+#comment-toggle {
+    background: url('../../images/fastorder/comment.png');
+    width: 17px;
+    height: 16px;
+    cursor: pointer;
+    float: left;
+    margin-top: 2px;
+    margin-right: 4px;
+}
+
+#fastorder-form-wrapper .buttons-set button {
+    float: right;
+    background: #3399cc none repeat scroll 0 0;
+    border: 0 none;
+    color: #ffffff;
+    display: inline-block;
+    font-family: "Raleway","Helvetica Neue",Verdana,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 19px;
+    padding: 7px 15px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.product-view #fastorder-form-wrapper .fastorder-please-wait {
+    width: 31%;
+}
+
+#fastorder-form-wrapper .fastorder-please-wait {
+    border-top: 1px solid #ededed;
+    clear: both;
+    margin: 10px 0 0;
+    padding-top: 10px;
+    text-align: right;
+    height: 24px;
+    line-height: 24px;
+    white-space: nowrap;
+}
+
+#fastorder-form-wrapper .fastorder-please-wait img {
+    float: left;
+    margin-right: 5px;
+    width: 24px;
+}
+
+#fastorder-form-wrapper .fastorder-please-wait .fastorder-loader-container{
+    float: right;
+}
+

@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * WEB4PRO - Creating profitable online stores
+ *
+ *
+ * @author    WEB4PRO <support@web4pro.net>
+ * @category  WEB4PRO
+ * @package   Web4pro_Fastorder
+ * @copyright Copyright (c) 2015 WEB4PRO (http://www.web4pro.net)
+ * @license   http://www.web4pro.net/license.txt
+ */
+-->
+
+<config>
+    <menu>
+        <sales>
+            <children>
+                <fast_order translate="title" module="web4pro_fastorder">
+                    <title>Fast Order</title>
+                    <action>adminhtml/fastorder/index</action>
+                    <sort_order>11</sort_order>
+                </fast_order>
+            </children>
+        </sales>
+        <web4pro_attachments>
+            <title>Web4pro</title>
+            <sort_order>71</sort_order>
+            <children>
+                <fastorder_settings module="web4pro_fastorder">
+                    <title>Fast Order Settings</title>
+                    <sort_order>0</sort_order>
+                    <children>
+                        <phonecode module="web4pro_fastorder">
+                            <title>Manage country calling codes</title>
+                            <sort_order>0</sort_order>
+                            <action>adminhtml/fastorder_phonecode/index</action>
+                        </phonecode>
+                        <settings>
+                            <title>Manage Settings</title>
+                            <sort_order>1</sort_order>
+                            <action>adminhtml/system_config/edit/section/web4pro_fastorder</action>
+                        </settings>
+                    </children>
+                </fastorder_settings>
+            </children>
+        </web4pro_attachments>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <fast_order translate="title">
+                                <title>Fast Order</title>
+                                <children>
+                                    <grid translate="title">
+                                        <title>Grid</title>
+                                    </grid>
+                                    <view translate="title">
+                                        <title>View</title>
+                                    </view>
+                                </children>
+                            </fast_order>
+                        </children>
+                    </sales>
+                    <web4pro_attachments>
+                        <title>Web4pro</title>
+                        <sort_order>0</sort_order>
+                        <children>
+                            <fastorder_settings module="web4pro_fastorder">
+                                <title>Fast Order Settings</title>
+                                <sort_order>0</sort_order>
+                                <children>
+                                    <phonecode module="web4pro_fastorder">
+                                        <title>Manage country calling codes</title>
+                                        <sort_order>0</sort_order>
+                                        <children>
+                                            <view translate="title">
+                                                <title>View</title>
+                                            </view>
+                                            <grid translate="title">
+                                                <title>Admin grid</title>
+                                            </grid>
+                                            <change translate="title">
+                                                <title>Change</title>
+                                            </change>
+                                        </children>
+                                    </phonecode>
+                                    <settings>
+                                        <title>Manage Settings</title>
+                                        <sort_order>1</sort_order>
+                                    </settings>
+                                </children>
+                            </fastorder_settings>
+                        </children>
+                    </web4pro_attachments>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <web4pro_fastorder translate="title" module="web4pro_fastorder">
+                                        <title>Fast Order Settings</title>
+                                    </web4pro_fastorder>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,239 @@
+/**
+ * WEB4PRO - Creating profitable online stores
+ *
+ *
+ * @author    WEB4PRO <support@web4pro.net>
+ * @category  WEB4PRO
+ * @package   Web4pro_Fastorder
+ * @copyright Copyright (c) 2014 WEB4PRO (http://www.web4pro.net)
+ * @license   http://www.web4pro.net/license.txt
+ */
+
+#fastorder-form-wrapper {
+    text-align: left;
+    margin: 2px 0 10px 0;
+}
+
+#fastorder-form-wrapper form {
+    margin-right: 50%;
+    margin-left: 5%;
+    display: block;
+}
+
+#fastorder-form-wrapper .form-list::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+#fastorder-form-wrapper .form-list li {
+    margin: 5px 1% 10px 0;
+}
+
+#fastorder-form-wrapper .form-list .fastorder-onlycurrent {
+    max-width: 100%;
+    width: 100%;
+}
+
+#fastorder-form-wrapper .form-list .fastorder-captcha {
+    max-width: 100%;
+    width: 100%;
+}
+
+#fastorder-form-wrapper .form-list .fastorder-comment-wrapper {
+    max-width: 100%;
+    width: 100%;
+}
+
+#fastorder-form-wrapper .form-list input {
+    text-transform: uppercase;
+    width:auto;
+}
+
+#fastorder-form-wrapper .form-list textarea {
+    width: 50%;
+    margin-left: 10px;
+}
+
+#fastorder-form-wrapper .form-list #only-current {
+    width: auto;
+    float: left;
+    height: 15px;
+}
+
+#fastorder-form-wrapper .form-list .mess-text {
+    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+    margin-left: 10px;
+}
+
+#comment-toggle {
+    background: url('../../images/fastorder/comment.png');
+    width: 17px;
+    height: 16px;
+    cursor: pointer;
+    float: left;
+    margin-top: 2px;
+    margin-right: 4px;
+}
+
+#fastorder-form-wrapper .buttons-set button {
+    line-height: 19px;
+    padding: 7px 15px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/** PRODUCT VIEW **/
+.product-view #fastorder-form-wrapper .fieldset {
+    margin: 0;
+}
+
+.product-view #fastorder-form-wrapper .form-list select {
+    border: 1px solid silver;
+    display: block;
+    text-transform: uppercase;
+    width: 225px;
+    margin-left: 10px;
+}
+
+.product-view #fastorder-form-wrapper .form-list .fastorder-country-phone-code {
+    width: 100px;
+}
+
+.product-view #fastorder-form-wrapper .form-list .fastorder-phone-code {
+    width: 70%;
+}
+
+.product-view #fastorder-form-wrapper .form-list .fastorder-email {
+    width: 100%;
+}
+
+.product-view #fastorder-form-wrapper .form-list #phone {
+    width: 225px;
+    margin-left: 10px;
+}
+
+.product-view #fastorder-form-wrapper .form-list #email {
+    width: 225px;
+    margin-left:10px;
+}
+
+.product-view #fastorder-form-wrapper .buttons-set {
+    margin: 0 0 0 0;
+    width: 50%;
+}
+
+.product-view #fastorder-form-wrapper .fastorder-please-wait {
+    clear: both;
+    margin: 10px 0 0;
+    text-align: right;
+    height: 24px;
+    line-height: 24px;
+    white-space: nowrap;
+    width: 47%;
+}
+
+.product-view #fastorder-form-wrapper .fastorder-please-wait img {
+    float: left;
+    margin-right: 5px;
+    width: 24px;
+}
+
+.product-view #fastorder-form-wrapper .fastorder-please-wait .fastorder-loader-container{
+    float: right;
+}
+
+/** CHECKOUT CART **/
+.cart .cart-collaterals .col2-set {
+    float: left;
+    width: 560px;
+}
+
+.cart .totals {
+    width: 335px;
+}
+
+.cart .totals .checkout-types {
+    padding: 8px 5px 15px;
+}
+
+.totals #fastorder-form-wrapper {
+    background: #fbfaf6 none repeat scroll 0 0;
+    border: 1px solid #bbafa0;
+    text-align: left;
+    margin: 2px 0 10px 0;
+}
+
+.totals #fastorder-form-wrapper h3 {
+    margin: 0 0 5px 10px;
+}
+
+.totals #fastorder-form-wrapper .fieldset {
+    margin: 0;
+    padding: 22px 10px 12px 10px;
+    border: none;
+}
+
+.totals #fastorder-form-wrapper .form-list select {
+    border: 1px solid silver;
+    display: block;
+    height: 30px;
+    text-transform: uppercase;
+}
+
+.totals #fastorder-form-wrapper .form-list .fastorder-country-phone-code {
+    width: 100%;
+}
+
+.totals #fastorder-form-wrapper .form-list .fastorder-phone-code {
+    width: 237px;
+}
+
+.totals #fastorder-form-wrapper .form-list #phone {
+    /*width: 296px;*/
+}
+
+.totals #fastorder-form-wrapper .form-list .fastorder-email {
+    width: 100%;
+}
+
+.totals #fastorder-form-wrapper .form-list #email {
+    width: 296px;
+}
+
+.totals #fastorder-form-wrapper .buttons-set {
+    margin: 0 0 0 0;
+    width: 100%;
+}
+
+.totals #fastorder-form-wrapper .fastorder-please-wait {
+    clear: both;
+    margin: 10px 0 15px;
+    text-align: right;
+    height: 24px;
+    line-height: 24px;
+    white-space: nowrap;
+    width: 83%;
+}
+
+.totals #fastorder-form-wrapper .fastorder-please-wait img {
+    float: left;
+    margin-right: 5px;
+    width: 24px;
+}
+
+.totals #fastorder-form-wrapper .fastorder-please-wait .fastorder-loader-container{
+    float: right;
+}
+
+#fastorder-form-wrapper .fieldset{
+    border: 2px solid #c4c6c8;
+    background: #fbfaf6;
+    padding: 2px 2px 2px 3px;
+}
+
+#fastorder-form-wrapper select {
+    width: auto;
+}

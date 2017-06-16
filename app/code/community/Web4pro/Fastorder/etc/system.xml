@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * WEB4PRO - Creating profitable online stores
+ *
+ *
+ * @author    WEB4PRO <support@web4pro.net>
+ * @category  WEB4PRO
+ * @package   Web4pro_Fastorder
+ * @copyright Copyright (c) 2015 WEB4PRO (http://www.web4pro.net)
+ * @license   http://www.web4pro.net/license.txt
+ */
+-->
+
+<config>
+    <tabs>
+        <web4pro>
+            <label>Web4pro</label>
+            <sort_order>100</sort_order>
+        </web4pro>
+    </tabs>
+    <sections>
+        <web4pro_fastorder translate="label" module="web4pro_fastorder">
+            <label><![CDATA[Fast Order]]></label>
+            <tab>web4pro</tab>
+            <sort_order>300</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label comment">
+                    <label>General</label>
+                    <sort_order>10</sort_order>
+                    <frontend_type>text</frontend_type>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <send_email translate="label">
+                            <label>Send Email with order info</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </send_email>
+                        <email translate="label comment">
+                            <label>Email Address</label>
+                            <comment>By default uses General Store Email [General=>Store Email Addresses=>General Contact]</comment>
+                            <depends>
+                                <send_email>1</send_email>
+                            </depends>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <validate>validate-email</validate>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email>
+                        <template_admin translate="label">
+                            <label>Admin Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </template_admin>
+                        <display_phone_in_sales_orders translate="label">
+                            <label>Display Phone Number In Sales Orders Grid</label>
+                            <comment>Phone number row will be added to "Sales Orders" grid</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_phone_in_sales_orders>
+                        <fast_order_description>
+                            <label>Fast order Description</label>
+                            <comment>This message will appear on Fast Order form (Example: "Lorem ipsum dolor sit amet...")
+                                <![CDATA[
+                                <div style="margin-right: 100px;">
+                                    <img src="https://docs.google.com/drawings/d/1eShGRBC-pDM9p1Hzsz7IERfJ6x-rd4Nkfkz0zO_xsXY/pub?w=800&amp;h=400" width="400" height="200" />
+                                </div>
+                                ]]>
+                            </comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fast_order_description>
+                        <show_for_product_more_expensive_than>
+                            <label>Show only for products which for price bigger than</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number</validate>
+                            <comment>Enter dot separated price</comment>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>If you want to show fast order form on every product page leave it blank.</comment>
+                        </show_for_product_more_expensive_than>
+			            <send_customer_email>
+                            <label>Send email to user</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Send email to user with order info</comment>
+                        </send_customer_email>
+                    </fields>
+                </general>
+                <captcha translate="label comment">
+                    <label>Captcha</label>
+                    <comment>
+                        <![CDATA[
+                        Please click <a target="_blank" href="https://www.google.com/recaptcha/admin">here</a> to
+                        get Captcha API <b>Public</b> and <b>Private</b> Keys
+                        ]]>
+                    </comment>
+                    <sort_order>20</sort_order>
+                    <frontend_type>text</frontend_type>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable CAPTCHA on Frontend</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable>
+                        <public_key translate="label">
+                            <label>Public Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </public_key>
+                        <private_key translate="label">
+                            <label>Private Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </private_key>
+                        <theme translate="label">
+                            <label>Recaptcha Theme</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>web4pro_fastorder/system_config_source_themes</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </theme>
+                        <language translate="label">
+                            <label>Language</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>web4pro_fastorder/system_config_source_language</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </language>
+                    </fields>
+                </captcha>
+            </groups>
+        </web4pro_fastorder>
+    </sections>
+</config>

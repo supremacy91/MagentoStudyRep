@@ -2,7 +2,7 @@
 <config>
     <modules>
         <MyShop_MyCarrier>
-            <active>true</active>
+            <active>false</active>
             <codePool>local</codePool>
             <depends>
                 <Mage_Shipping />

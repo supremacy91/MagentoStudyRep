@@ -34,7 +34,7 @@ class SNS_CmsMenus_Model_Resource_Menu extends Mage_Core_Model_Resource_Db_Abstr
                 "ref_cms_menu = " . $object->getId()
             );
             $rcmArray = $object->getData('rcm');
-
+           // var_dump($rcmArray); die();
             if(!empty($rcmArray)) {
                 $rcmArray = explode('&', $rcmArray);
                 foreach ($rcmArray as $rcm) {

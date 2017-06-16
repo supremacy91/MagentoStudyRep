@@ -1,0 +1,371 @@
+<?php
+/**
+ * WEB4PRO - Creating profitable online stores
+ *
+ *
+ * @author    WEB4PRO <support@web4pro.net>
+ * @category  WEB4PRO
+ * @package   Web4pro_Fastorder
+ * @copyright Copyright (c) 2014 WEB4PRO (http://www.web4pro.net)
+ * @license   http://www.web4pro.net/license.txt
+ */
+/* @var $this Web4pro_Fastorder_Block_Form */
+?>
+<?php
+/** @var Web4pro_Fastorder_Helper_Data $helper */
+$helper = Mage::helper('web4pro_fastorder');
+$action = $this->getAction()->getFullActionName();
+$description = $helper->getFastOrderDescription();
+$currentProduct = Mage::registry('current_product');
+$readOnly = '';
+if ($currentProduct) {
+    $currProductId = $currentProduct->getId();
+}
+$custEmail = '';
+$telephone = '';
+$country = '';
+if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+    $customer = Mage::getSingleton('customer/session')->getCustomer();
+    $custId = $customer->getId();
+    $customer = Mage::getModel('customer/customer')->load($custId);
+    $custEmail = $customer->getEmail();//get customer email
+    $billAddressId = $customer->getDefaultBilling();
+    $address = Mage::getModel('customer/address')->load($billAddressId);
+
+    $telephone = $address->getTelephone();
+    $country = $address->getCountry();
+    $readOnly = 'readonly';
+}
+?>
+
+<div id="fastorder-form-wrapper" class="<?php echo $this->getAction()->getFullActionName() ?>">
+    <?php $controller = $this->getHandle() ; ?>
+    <form id="fastorder-form" action="<?php echo $this->getUrl($controller) ?>" method="post">
+        <?php if ($currentProduct) : ?>
+            <input type="hidden" name="product" id="product-id" class="fastorder-productid" value="<?php echo $currProductId; ?>"/>
+        <?php endif; ?>
+        <h3><?php echo $this->__('Fast Order') ?></h3>
+        <div class="attentionBundleAndGroup">
+            <?php
+                if(Mage::registry('fastorderBundleAndGroupValidate') === true) {
+                    echo("ATTENTION! You are considering the " .
+                        Mage::registry('current_product')->getTypeId() .
+                        " product fast order.<br/>To complete it you have to be sure that
+                        your result sum of your order is not less than " .
+                        $this->getModuleHelper()->getPriceBigger() . $this->getModuleHelper()->getSymbol()) . "<br/><br/>";
+                }
+            ?>
+        </div>
+        <div class="fieldset">
+            <?php if($description): ?>
+                <h6><?php echo $description; ?></h6>
+            <?php else: ?>
+                <h6><?php echo $this->__('Manager will call you, knows all details and will help place your order.') ?></h6>
+            <?php endif; ?>
+            <ul class="form-list">
+                <li class="fastorder-country-phone-code">
+                    <div class="input-box">
+                        <?php echo $this->getPhoneCodeHtml('country', 'validate-select', true, $helper->__('CODE'), $country) ?>
+                    </div>
+                </li>
+                <li class="fastorder-phone-code">
+                    <div class="input-box">
+                        <input type="text" name="phone" id="phone"
+                               class="input-text required-entry validate-digits"
+                               placeholder="<?php echo $this->__('phone number') ?>"
+                               value="<?php echo $this->stripTags($telephone, null, true); ?>"/>
+                    </div>
+                </li>
+                <li class="fastorder-email">
+                    <div class="input-box">
+                        <input type="text" name="email" id="email"
+                               class="input-text required-entry validate-email"
+                               placeholder="<?php echo $this->__('email') ?>" <?php echo $readOnly; ?> value="<?php echo $custEmail; ?>"/>
+                    </div>
+                </li>
+                <li class="fastorder-captcha">
+                    <div class="input-box">
+                        <?php echo $this->getCaptchaHtml() ?>
+                    </div>
+                </li>
+                <div id="comment-toggle" class="comment-toggle" title="<?php echo $this->__('Add comment') ?>">&nbsp;</div>
+                <li class="wide" id="fastorder-comment-wrapper" style="display: none;">
+                    <label for="comment"><?php echo $helper->__('Comment') ?></label>
+                    <div class="input-box">
+                        <textarea name="comment" id="comment" title="<?php echo $helper->__('Comment') ?>" class="input-text" cols="41" rows="2"></textarea>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="buttons-set" id="fastorder-buttons-container">
+            <button type="button"
+                    title="Submit Review"
+                    class="button <?php echo $action == 'checkout_cart_index' ? 'btn-proceed-checkout btn-checkout' : '' ?>"
+                    onclick="fastOrder.saveOrder()">
+                    <span><span><?php echo $this->__('Place Order Now') ?></span></span>
+            </button>
+        </div>
+        <div class="fastorder-please-wait" id="fastorder-please-wait" style="display:none;">
+            <div class="fastorder-loader-container">
+                <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>"
+                     alt="<?php echo $helper->__('Submit Order...') ?>" title="<?php echo $helper->__('Submit Order...') ?>"
+                     class="v-middle"/> <?php echo $helper->__('Submit Order...') ?>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+    var fastOrder = {
+        formInstance: new VarienForm('fastorder-form'),
+
+        _processResponse: function (response) {
+            if (response.error) {
+                Element.hide('fastorder-please-wait');
+                Element.show('fastorder-buttons-container');
+                $('fastorder-buttons-container').descendants().each(function (s) {
+                    s.disabled = false;
+                });
+                alert(response.error);
+                if(typeof grecaptcha!='undefined'){
+                    grecaptcha.reset();
+                }
+                return false;
+            }
+            if (response.success) {
+                if (response.message) {
+                    alert(response.message)
+                }
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                }
+            }
+            return true;
+        },
+        _afterSaveOrder: function (transport) {
+            var response = {};
+            try {
+                response = transport.responseText.evalJSON();
+            } catch (e) {
+                response = transport.responseText;
+            }
+            if (this._processResponse(response)) {
+
+            }
+        },
+        saveOrder: function () {
+            if (this.formInstance.validator && this.formInstance.validator.validate()) {
+                var productParams = '';
+                if ($('product-id')) {
+                    var product = $('product-id').value;
+                    var form = $('product_addtocart_form');
+                    var qty, onlyCurrent, comment;
+                    if ($('qty')) {
+                        qty = $('qty').value;
+                    }
+
+                    if ($$('#fastorder-comment-wrapper textarea').value != '') {
+                        comment = $$('#fastorder-comment-wrapper textarea').value;
+                    } else {
+                        comment = "fast order";
+                    }
+                    var form_key = form[0].value;
+                    var productAjax = {
+                        form_key: form_key
+
+                    };
+                    if (qty && qty > 0) {
+                        productAjax.qty = qty;
+                    }
+                    var options = {};
+                    var super_attributes = {};
+                    var superparams = {};
+                    var prodOptions = $$('#product-options-wrapper .super-attribute-select');
+                    var virtProdOptions = $$('#product-options-wrapper .super-attribute-select');
+                    var customOptions = $$('#product-options-wrapper .product-custom-option');
+                    var supergroup = $$('#super-product-table input');
+
+                    var bundleOptions = $$('#product-options-wrapper select, #product-options-wrapper input, #product-options-wrapper textarea');
+                    var bundleparams = [];
+                    //process bundle options
+                    if (bundleOptions) {
+                        var bund = {};
+                        for (var i = 0; i < bundleOptions.length; i++) {
+                            var bundleName = bundleOptions[i].readAttribute('name');
+                            var bundleTag = bundleOptions[i].tagName;
+                            var bundleType = bundleOptions[i].readAttribute('type');
+                            var bundleValue = '';
+                            if ('INPUT' == bundleTag || 'TEXTAREA' == bundleTag) {
+                                //type is input
+                                if ('radio' == bundleType && bundleOptions[i].checked) {
+                                    //input radio checked
+                                    bundleValue = bundleOptions[i].value;
+                                } else if ('checkbox' == bundleType && bundleOptions[i].checked) {
+                                    bundleValue = bundleOptions[i].value;
+                                }
+                                if ('text' == bundleType || 'hidden' == bundleType) {
+                                    //normal input
+                                    bundleValue = bundleOptions[i].value;
+                                }
+                            } else if ('SELECT' == bundleTag) {
+
+                                for (var j = 0; j < bundleOptions[i].length; j++) {
+                                    if (bundleOptions[i][j].selected == true) {
+                                        if (bundleValue && !bundleValue.empty()) {
+                                            bundleValue = bundleValue + "," + bundleOptions[i][j].value;
+                                        } else {
+                                            bundleValue = bundleOptions[i][j].value;
+                                        }
+
+                                    }
+                                }
+
+                            } else {
+                                continue;
+                            }
+
+                            if (!bundleName.empty() && !bundleValue.empty()) {
+                                bund[bundleName] = bundleValue;
+                                bundleparams.push(bund);
+                            }
+                            bund = {};
+                        }
+                    }
+
+                    //process product superoptions
+                    var optName, optValue;
+                    if (prodOptions) {
+                        for (var i = 0; i < prodOptions.length; i++) {
+                            optValue = '';
+                            optName = prodOptions[i].readAttribute('name');
+                            for (var j = 0; j < prodOptions[i].length; j++) {
+                                optValue = '';
+                                if (prodOptions[i][j].selected == true) {
+                                    optValue = prodOptions[i][j].value;
+                                }
+                            }
+                            if (!optName.empty() && !optValue.empty()) {
+                                superparams[optName] = optValue;
+                            }
+                        }
+                    }
+
+
+                    //process custom options
+                    var custName = '';
+                    var custType = '';
+                    var custValue = '';
+                    var custparams = {};
+                    if (customOptions) {
+                        for (var i = 0; i < customOptions.length; i++) {
+                            custName = customOptions[i].readAttribute('name');
+                            custType = customOptions[i].tagName;
+                            custValue = '';
+                            if ('INPUT' == custType || 'TEXTAREA' == custType) {
+                                //type is input
+                                custValue = customOptions[i].value;
+                            }
+
+                            if ('SELECT' == custType) {
+                                //type is select
+                                for (var j = 0; j < customOptions[i].length; j++) {
+                                    custValue = '';
+                                    if (customOptions[i][j].selected == true) {
+                                        custValue = customOptions[i][j].value;
+                                    }
+                                }
+                            }
+                            if (!custName.empty() && !custValue.empty()) {
+                                custparams[custName] = custValue;
+                            }
+                        }
+                    }
+
+                    //process product supergroups
+                    var supergroupOptions = {};
+                    for (var i = 0; i < supergroup.length; i++) {
+                        superName = supergroup[i].readAttribute('name');
+                        var tag
+                        var index = superName.indexOf('super_group');
+                        if (index != -1) {
+                            superValue = supergroup[i].value;
+                            supergroupOptions[superName] = superValue;
+                        }
+                    }
+
+
+                    var productAjaxStr = Object.toQueryString(productAjax);
+                    var allData = '';
+                    allData = allData + productAjaxStr;
+
+                    var bundleparamsStr = '';
+                    var bundStr = '';
+                    var bundleObj = {};
+                    if (bundleparams) {
+                        for (var i = 0, si = bundleparams.length; i < si; i++) {
+                            var obj = bundleparams[i];
+                            var curObj = {};
+                            for (var prop in obj) {
+                                curObj[prop] = obj[prop];
+                                curObjStr = Object.toQueryString(curObj);
+                                allData = allData + '&' + curObjStr;
+                            }
+
+                        }
+                    }
+
+                    var supergroupparamsStr = '';
+                    if (supergroupOptions) {
+                        supergroupparamsStr = Object.toQueryString(supergroupOptions);
+                        allData = allData + '&' + supergroupparamsStr;
+                    }
+
+                    var superParamsSrt = '';
+                    if (superparams) {
+                        superParamsSrt = Object.toQueryString(superparams);
+                        allData = allData + '&' + superParamsSrt;
+                    }
+                    var custParamsSrt = '';
+                    if (custparams) {
+                        custParamsSrt = Object.toQueryString(custparams);
+                        allData = allData + '&' + custParamsSrt;
+                    }
+                }
+
+                Element.show('fastorder-please-wait');
+                Element.hide('fastorder-buttons-container');
+                $('fastorder-buttons-container').descendants().each(function (s) {
+                    s.disabled = true;
+                });
+                var formString = this.formInstance.form.serialize();
+                if ('' != allData) {
+                    params = formString + '&' + allData;
+                } else {
+                    params = formString;
+                }
+
+                new Ajax.Request(this.formInstance.form.getAttribute('action'), {
+                    method: 'post',
+                    parameters: params,
+                    onComplete: this._afterSaveOrder.bind(this),
+                    onFailure: function () {
+                        if(typeof grecaptcha!='undefined'){
+                            grecaptcha.reset();
+                        }
+                        location.href = BASE_URL;
+                    }
+                });
+            }
+        },
+        toggleCommentBlock: function (event) {
+            Element.toggle('fastorder-comment-wrapper');
+        }
+
+    };
+
+    $$("#fastorder-form-wrapper .comment-toggle").invoke('observe', 'click', function () {
+        fastOrder.toggleCommentBlock(this)
+    });
+
+
+</script>
