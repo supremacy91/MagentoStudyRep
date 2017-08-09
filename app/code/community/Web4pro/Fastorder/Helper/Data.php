@@ -297,8 +297,10 @@ class Web4pro_Fastorder_Helper_Data extends Mage_Core_Helper_Abstract
     {
         foreach ($data as $key => $value)
         {
+            $tt = 10;
             if(is_object($value))
             {
+                $tt = 100;
                 unset($data[$key]);
             }
         }
@@ -522,13 +524,24 @@ class Web4pro_Fastorder_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function filterData($data)
     {
+        //$count = 0;
+        $options = array();
         if($data['bundle_option'])
         {
             foreach($data['bundle_option'] as $key => $values)
             {
+//                if($count) {
+//                    return $data;
+//                }
+//                $count++;
+               $x = gettype($values) == "string";
+                if(gettype($values) == "string") {
+                    $bundleOption[$key] = $values;
+                    break;
+                }
                 foreach($values as $value)
                 {
-                    $options = explode(',', $value);
+                    $options = array_merge($options, explode(',', $value));
                 }
                 $bundleOption[$key] = $options;
             }
@@ -709,6 +722,9 @@ class Web4pro_Fastorder_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function isPriceForProductEnable($quote)
     {
+        $a = $quote->getGrandTotal();
+        $b = $this->getPriceBigger();
+        //die("asdasdasdsadasdasdasd");
         return $quote->getGrandTotal() < $this->getPriceBigger();
     }
 }

@@ -213,6 +213,7 @@ class Mage_Checkout_CartController extends Mage_Core_Controller_Front_Action
         }
         $cart   = $this->_getCart();
         $params = $this->getRequest()->getParams();
+        Mage::log(var_export($params, true));
         try {
             if (isset($params['qty'])) {
                 $filter = new Zend_Filter_LocalizedToNormalized(

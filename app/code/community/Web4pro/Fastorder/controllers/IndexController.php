@@ -39,7 +39,7 @@ class Web4pro_Fastorder_IndexController extends Mage_Core_Controller_Front_Actio
         $helper = $this->helper('web4pro_fastorder');
         $params = $this->getRequest()->getParams();
         $product =  $helper->initProduct($params);
-
+        $productType=$product->getTypeID();
         $quote = $order->getNewQuoteFastOrder($params, $product);
 
         if($this->validate($quote, $product)){

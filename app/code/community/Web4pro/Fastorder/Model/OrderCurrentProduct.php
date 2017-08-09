@@ -46,7 +46,7 @@ class Web4pro_Fastorder_Model_OrderCurrentProduct
         }
 
         $this->_quote->save();
-
+        $bb = $this->_quote;
         return $this->_quote;
     }
     

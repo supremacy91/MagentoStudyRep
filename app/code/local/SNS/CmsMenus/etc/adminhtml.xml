@@ -6,7 +6,7 @@
             <children>
                 <menuExt translate="title" module="cmsMenus">
                     <title>menu Extension</title>
-                    <action>menu_admin/adminhtml_menu</action>
+                    <action>adminhtml/menu</action>
                     <sort_order>100</sort_order>
                 </menuExt>
             </children>

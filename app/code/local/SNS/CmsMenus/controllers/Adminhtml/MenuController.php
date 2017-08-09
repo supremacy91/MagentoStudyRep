@@ -4,7 +4,9 @@ class SNS_CmsMenus_Adminhtml_MenuController extends Mage_Adminhtml_Controller_Ac
 {
     public function indexAction()
     {
+
         $this->loadLayout();
+       // die(var_dump($this->getLayout()->getUpdate()->getHandles()));
         $this->renderLayout();
        // $this->getResponse()->setOutput();
     }

@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <layout>
+
+<adminhtml_menu_index>
+    <update handle="menu_admin_adminhtml_menu_index"></update>
+</adminhtml_menu_index>
 <menu_admin_adminhtml_menu_index>
     <reference name="content">
         <block name="menuadmin.index" type="cmsMenu/adminhtml_menuadmin"/>
